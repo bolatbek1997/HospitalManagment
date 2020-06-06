@@ -8,7 +8,7 @@
     using AutoMapper;
     using System.ComponentModel.DataAnnotations;
 
-    public class AddDoctorViewModel: IMapFrom<Doctor>, IHaveCustomMappings
+    public class AddDoctorViewModel: IMapFrom<UserInfo>, IHaveCustomMappings
     {
         public int Id { get; set; }
         
@@ -17,6 +17,8 @@
         public int SpecialityId { get; set; }
 
         public IEnumerable<SelectListItem> Specialty { get; set; }
+        public string DoctorId { get; set; }
+        public IEnumerable<User> Doctor { get; set; }
 
         public HttpPostedFileBase ImageUpload { get; set; }
         
@@ -24,7 +26,7 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Doctor, AddDoctorViewModel>()
+            configuration.CreateMap<UserInfo, AddDoctorViewModel>()
                 .ForMember(x => x.SpecialityId, opt => opt.MapFrom(x => x.Specialty.Id))
                 .ReverseMap();
         }

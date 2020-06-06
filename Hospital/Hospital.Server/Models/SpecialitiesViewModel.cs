@@ -15,6 +15,6 @@
 
         public ICollection<ClinicalTrial> ClinicalTrials { get; set; }
 
-        public ICollection<Doctor> Doctors { get; set; }
+        public ICollection<UserInfo> Doctors { get; set; }
     }
 }

@@ -10,12 +10,13 @@
     {
         List<ResultViewModel> GetAllResults();
 
-        List<PatientViewModel> GetPatients();
+        List<PatientViewModel> GetPatients(string role="user",string userId="");
 
         PDF GetPDF(AddResultViewModel result);
 
         Image GetImage(AddDoctorViewModel doctor);
 
         IQueryable<SelectListItem> GetSpecialty();
+        UserInfo GetUserById(string id);
     }
 }

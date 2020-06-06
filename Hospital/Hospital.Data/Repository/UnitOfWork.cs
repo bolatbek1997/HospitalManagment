@@ -45,11 +45,11 @@
             }
         }
 
-        public IRepository<Doctor> Doctors
+        public IRepository<UserInfo> Doctors
         {
             get
             {
-                return this.GetRepository<Doctor>();
+                return this.GetRepository<UserInfo>();
             }
         }
 

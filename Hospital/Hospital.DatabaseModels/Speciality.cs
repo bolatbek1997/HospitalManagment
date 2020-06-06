@@ -5,12 +5,12 @@
     public class Speciality
     {
         private ICollection<ClinicalTrial> clinicalTrials;
-        private ICollection<Doctor> doctors;
+        private ICollection<UserInfo> doctors;
 
         public Speciality()
         {
             this.clinicalTrials = new HashSet<ClinicalTrial>();
-            this.doctors = new HashSet<Doctor>();
+            this.doctors = new HashSet<UserInfo>();
         }
 
         public int Id { get; set; }
@@ -25,7 +25,7 @@
             set { this.clinicalTrials = value; }
         }
 
-        public virtual ICollection<Doctor> Doctors
+        public virtual ICollection<UserInfo> Doctors
         {
             get { return this.doctors; }
             set { this.doctors = value; }

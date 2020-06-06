@@ -17,29 +17,29 @@
         <li style="margin:5px;">
             @Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li style="margin:5px;"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li style="margin:5px;"><a href="javascript:document.getElementById('logoutForm').submit()">Шығу</a></li>
     </ul>
     }
 }
 else
 {
-        <a href="#" data-toggle="modal" data-target="#login-modal" >Login</a>
+        <a href="#" data-toggle="modal" data-target="#login-modal" >Кіру</a>
         <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Login to Your Account</h1><br>
+                    <h1>Жеке кабинетке кіру</h1><br>
                     <form action="~/Account/Login", method="post">
                         @Html.AntiForgeryToken()
 
                         <input type="text" name="Email" placeholder="Email">
 
-                        <input type="password" name="Password" placeholder="Password">
+                        <input type="password" name="Password" placeholder="Құпия сөз">
 
-                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                        <input type="submit" name="Кіру" class="login loginmodal-submit" value="Login">
                     </form>
 
                     <div class="login-help">
-                        <a href="@Url.Action("Register", "Account")">Register</a> - <a href="@Url.Action("ForgotPassword", "Account")">Forgot Password</a>
+                        <a href="@Url.Action("Register", "Account")">Тіркелу</a> - <a href="@Url.Action("ForgotPassword", "Account")">Құпия сөзді қалпына келтіру</a>
                     </div>
                 </div>
             </div>

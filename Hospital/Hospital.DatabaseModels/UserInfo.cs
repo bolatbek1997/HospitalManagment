@@ -1,6 +1,8 @@
-﻿namespace Hospital.DatabaseModels
+﻿using System.Collections.Generic;
+
+namespace Hospital.DatabaseModels
 {
-    public class Doctor
+    public class UserInfo
     {
         public int Id { get; set; }
 
@@ -11,5 +13,6 @@
         public Image Image { get; set; }
 
         public string Description { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

@@ -5,6 +5,7 @@
     using Data.Constants;
     using Data.Repository;
     using DatabaseModels;
+    using Hospital.Data;
     using Models.AdminViewModels;
     using System.Collections.Generic;
     using System.IO;
@@ -33,8 +34,9 @@
             return allresults;
         }
 
-        public List<PatientViewModel> GetPatients()
+        public List<PatientViewModel> GetPatients(string role = "user", string userId = "")
         {
+            var db = new ApplicationDbContext();
             var patients = this.Data
                 .Users
                 .All()
@@ -97,6 +99,14 @@
             });
             
             return specialty;
+        }
+        public UserInfo GetUserById(string id)
+        {
+            var db = new ApplicationDbContext();
+            var user= db.Users.FirstOrDefault(x => x.Id == id);
+            return user != null ? user.UserInfo : new UserInfo();
+
+
         }
     }
 }

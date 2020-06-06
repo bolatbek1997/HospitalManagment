@@ -8,8 +8,10 @@
     using Services.Contracts;
     using Services;
     using AutoMapper;
+    using System.Collections.Generic;
 
-    [Authorize(Roles = GlobalConstants.adminRoleName)]
+    [Authorize]
+    // [Authorize(Roles = GlobalConstants.doctor)]
     public class AdministrationController : BaseController
     {
 
@@ -27,6 +29,24 @@
 
 
         public ActionResult ClinicalResults()
+        {
+            if (!User.IsInRole(GlobalConstants.adminRoleName))
+            {
+                var list = new List<ResultViewModel>();
+                var model = this.adminService.GetAllResults();
+                foreach (var item in model)
+                {
+                    if (item.Patient.Email == UserProfile.Email)
+                    {
+                        list.Add(item);
+                    }
+                }
+                return View(list);
+            }
+            else
+                return View(this.adminService.GetAllResults());
+        }
+        public ActionResult Users()
         {
             return View(this.adminService.GetAllResults());
         }
@@ -110,6 +130,7 @@
         [HttpGet]
         public ActionResult AddDoctor()
         {
+            //var user = adminService.GetUserById(UserProfile.Id);
             var model = new AddDoctorViewModel()
             {
                 Specialty = adminService.GetSpecialty()
@@ -124,7 +145,7 @@
             if (ModelState.IsValid)
             {
                 var specialty = this.Data.Specialities.GetById(model.SpecialityId);
-                var doc = Mapper.Map<Doctor>(model);
+                var doc = Mapper.Map<UserInfo>(model);
                 doc.Image = this.adminService.GetImage(model);
                 doc.Specialty = specialty;
                 this.Data.Doctors.Add(doc);
@@ -136,7 +157,7 @@
             return View(model);
         }
 
-        
+
         public ActionResult DeleteDoctor(int id)
         {
             var doc = this.Data.Doctors.GetById(id);

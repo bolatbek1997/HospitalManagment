@@ -2,22 +2,17 @@
 @using Hospital.DatabaseModels
 
 @{
-    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="row">
         <div class="col-lg-6">
-            <div class="input-group">
-                <input type="search" id="search" class="form-control" placeholder="Search doctor">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </span>
-            </div>
+         
         </div>
 
         <div class="col-lg-6">
-            <a href="@Url.Action("AddDoctor", "Administration")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Doctor</a>
+            <a href="@Url.Action("AddDoctor", "Administration")" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Қосу</a>
         </div>
     </div>
     </br>
@@ -25,9 +20,9 @@
         <table class="table" id="table">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Speciality</th>
-                    <th>Delete</th>
+                    <th>Аты</th>
+                    <th>Бөлімі</th>
+                    <th>Жою</th>
                 </tr>
             </thead>
             <tbody>

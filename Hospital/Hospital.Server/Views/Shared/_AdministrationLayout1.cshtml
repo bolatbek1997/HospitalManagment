@@ -24,36 +24,22 @@
                 </div>
                 <div class="navi">
                     <ul>
-                        <li class="@*active*@"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Негізгі Бет</span></a></li>
-                        @{
-                            if (Request.IsAuthenticated && User.IsInRole(GlobalConstants.adminRoleName))
-                            {
-                                <li><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs hidden-sm">Талдау нәтижелері</span></a></li>
-                                <li><a href="@Url.Action("AllTrials", "Administration")"><i class="fa fa-plus-square"></i><span class="hidden-xs hidden-sm">Ем түрлері</span></a></li>
-                                <li><a href="@Url.Action("AllDoctors", "Administration")"><i class="fa fa-user-md"></i><span class="hidden-xs hidden-sm">Дәрігерлер тізімі</span></a></li>
-                            }
-                            else if (Request.IsAuthenticated && User.IsInRole(GlobalConstants.doctor))
-                            {
-                                <li><a href="@Url.Action("AllDoctors", "Administration")"><i class="fa fa-user-md"></i><span class="hidden-xs hidden-sm">Дәрігерлер тізімі</span></a></li>
-                                <li><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs hidden-sm">Талдау нәтижелері</span></a></li>
-
-                            }
-                            else if (Request.IsAuthenticated && User.IsInRole(GlobalConstants.user))
-                            {
-                                <li><a href="@Url.Action("AllDoctors", "Administration")"><i class="fa fa-user-md"></i><span class="hidden-xs hidden-sm">Дәрігерлер тізімі</span></a></li>
-                                <li><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-file-pdf-o"></i><span class="hidden-xs hidden-sm">Талдау нәтижелері</span></a></li>
-
-                            }
-                            else
-                            {
-
-                                <li><a href="@Url.Action("AllTrials", "ClinicalTrials")"><i class="fa fa-stethoscope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Ем түрлері</span></a></li>
-                                <li><a href="@Url.Action("AllDoctors", "Doctors")"><i class="fa fa-user-md" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Дәрігерлер тізімі</span></a></li>
-                            }
-                            <li class="@*active*@"><a href="@Url.Action("About", "Home")"><i class="fa fa-user-md" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Біз жайында</span></a></li>
-                            <li class="@*active*@"><a href="@Url.Action("Contact", "Home")"><i class="fa fa-stethoscope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Байланыс</span></a></li>
-
+                        @if (Request.IsAuthenticated && User.IsInRole(GlobalConstants.adminRoleName))
+                        {
+                            <li style="background-color:midnightblue"><a href="@Url.Action("ClinicalResults", "Administration")"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Administration</span></a></li>
                         }
+                        <li class="active"><a href="@Url.Action("Index", "Home")"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li><a href="@Url.Action("GetClinicalResult", "ClinicalResults")"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-file-pdf-o" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Results</span></a></li>
+                        }
+                        <li><a href="@Url.Action("AllTrials", "ClinicalTrials")"><i class="fa fa-stethoscope" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clinical Trials</span></a></li>
+                        <li><a href="@Url.Action("AllDoctors", "Doctors")"><i class="fa fa-user-md" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Doctors</span></a></li>
+                        @*<li><a href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span class="hidden-xs hidden-sm">About Us</span></a></li>*@
                     </ul>
                 </div>
             </div>
@@ -72,13 +58,13 @@
                                 </div>
                             </nav>
                             <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Іздеу" id="search">
+                                <input type="text" placeholder="Search" id="search">
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="header-rightside" style="margin-top:12px;">
                                 <ul class="list-inline header-top pull-right">
-                                    <li><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Бізбен байланыс</a></li>
+                                    <li><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Contact Us</a></li>
                                     @Html.Partial("_LoginPartial")
                                 </ul>
                             </div>
@@ -103,26 +89,26 @@
                     <h4 class="modal-title text-center">Contact us</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="Аты-жөні" name="Name">
+                    <input type="text" placeholder="Name" name="Name">
                     <input type="text" placeholder="Email" name="Email">
-                    <input type="text" placeholder="Жасыңыз" name="Age">
+                    <input type="text" placeholder="Age" name="Age">
                     <textarea placeholder="Message"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="cancel" data-dismiss="modal">Жабу</button>
-                    <button type="button" class="add-project" data-dismiss="modal">Жіберу</button>
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Send</button>
                 </div>
             </div>
         </div>
     </div>
-    <footer  class="clearfix" style="background-color:#0e1a35">
+    <footer id="footer" class="clearfix">
         <div id="footer-widgets">
             <div class="container">
                 <div id="footer-wrapper">
                     <div class="row">
                         <div class="col-sm-6 col-md-3">
                             <div id="meta-3" class="widget widgetFooter widget_meta">
-                                <h4 class="widgettitle">Маңызды беттер :</h4>
+                                <h4 class="widgettitle">Importent Page :</h4>
                                 <ul>
                                     <li><a href="#"><i class="fa fa-home fa-fw"></i> Home</a></li>
                                     <li><a href="#"><i class="fa fa-link"></i>   Privacy Policy</a></li>
@@ -132,23 +118,23 @@
                         </div> <!-- end widget1 -->
                         <div class="col-sm-6 col-md-3">
                             <div id="recent-posts-3" class="widget widgetFooter widget_recent_entries">
-                                <h4 class="widgettitle">Әлеуметтік желі :</h4>
+                                <h4 class="widgettitle">Our social media :</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
+                                        <a href="https://www.facebook.com/asq.becheva" target="_blank"><i class="fa fa-facebook"></i> Facebook</a>
                                     </li>
                                     <li>
-                                        <a href="https://github.com/" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
+                                        <a href="https://github.com/AsiaBecheva" target="_blank"><i class="fa fa-twitter"></i> Twitter</a>
                                     </li>
                                     <li>
-                                        <a href="https://github.com/" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
+                                        <a href="https://github.com/AsiaBecheva" target="_blank"><i class="fa fa-youtube"></i> Youtube</a>
                                     </li>
                                 </ul>
                             </div>
                         </div> <!-- end widget1 -->
                         <div class="col-sm-6 col-md-6">
                             <div id="meta-4" class="widget widgetFooter widget_meta">
-                                <h4 class="widgettitle">Жаңалықтарға жазылу :</h4>
+                                <h4 class="widgettitle">Subscribe :</h4>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-addon">E-mail :</span>
@@ -160,7 +146,7 @@
                                         <span class="input-group-addon">Phone  :</span>
                                         <input class="form-control" placeholder="+000000" type="text">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button">Жазылу !</button>
+                                            <button class="btn btn-primary" type="button">Subscribe !</button>
                                         </span>
                                     </div>
                                 </div>
@@ -171,12 +157,11 @@
                 </div>
             </div>
         </div>
-        </footer>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js"></script>
 
     <script>
         $(document).ready(function () {

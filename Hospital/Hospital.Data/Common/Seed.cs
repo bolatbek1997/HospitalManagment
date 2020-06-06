@@ -24,7 +24,17 @@
                 {
                     Name = GlobalConstants.adminRoleName
                 };
+                var role2 = new IdentityRole()
+                {
+                    Name = "doctor"
+                };
+                var role3 = new IdentityRole()
+                {
+                    Name = "user"
+                };
                 roleManager.Create(role);
+                roleManager.Create(role2);
+                roleManager.Create(role3);
 
                 var user = new User()
                 {
@@ -85,22 +95,22 @@
                 {
                     var clinicalTrial = new ClinicalTrial
                     {
-                        Title = "Trial - " + i + ".1",
+                        Title = "Емдеу түрі - " + i + ".1",
                         Price = random.RandomDataInt(25, 4587),
                         IsAvailable = IsAvailable.Yes,
                     };
 
                     var clinicalTrial2 = new ClinicalTrial
                     {
-                        Title = "Trial - " + i + ".2",
+                        Title = "Емдеу түрі  - " + i + ".2",
                         Price = random.RandomDataInt(48, 565),
                         IsAvailable = IsAvailable.No,
                     };
 
-                    var listDoctors = new List<Doctor>();
+                    var listDoctors = new List<UserInfo>();
                     for (int j = 0; j < random.RandomDataInt(2, 6); j++)
                     {
-                        var doctor = new Doctor
+                        var doctor = new UserInfo
                         {
                             Name = "Doctor - " + random.RandomDataString(6, 10) + " " + random.RandomDataString(10, 13),
                             Image = CreateImage(),
@@ -111,7 +121,7 @@
 
                     var specialty = new Speciality
                     {
-                        Title = "Specialty - " + i,
+                        Title = "Бөлім - " + i,
                         Description = random.RandomDataString(200, 500),
                         ClinicalTrials = new HashSet<ClinicalTrial>()
                         {

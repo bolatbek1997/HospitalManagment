@@ -13,7 +13,7 @@
 
         IRepository<ClinicalTrial> ClinicalTrials { get; }
 
-        IRepository<Doctor> Doctors { get; }
+        IRepository<UserInfo> Doctors { get; }
 
         IRepository<User> Users { get; }
 

@@ -4,7 +4,7 @@
     using DatabaseModels;
     using Infrastructure.Mapping;
 
-    public class DoctorViewModel: IMapFrom<Doctor>, IHaveCustomMappings
+    public class DoctorViewModel: IMapFrom<UserInfo>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -18,7 +18,7 @@
 
         public void CreateMappings(IConfiguration configuration)
         {
-            configuration.CreateMap<Doctor, DoctorViewModel>()
+            configuration.CreateMap<UserInfo, DoctorViewModel>()
                 .ForMember(x => x.SpecialityTitle, opt => opt.MapFrom(x => x.Specialty.Title));
         }
     }
