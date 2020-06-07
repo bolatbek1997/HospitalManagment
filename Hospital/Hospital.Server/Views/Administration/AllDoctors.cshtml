@@ -22,6 +22,7 @@
                 <tr>
                     <th>Аты</th>
                     <th>Бөлімі</th>
+                    <th>Ақпарат</th>
                     <th>Жою</th>
                 </tr>
             </thead>
@@ -31,7 +32,8 @@
                     <tr>
                         <td>@doctor.Name</td>
                         <td>@doctor.SpecialityTitle</td>
-                        <td><a href="@Url.Action("DeleteDoctor", "Administration", new { id = doctor.Id })" class="fa fa-times"></a></td>
+                        <td> <a class="btn btn-blog pull-right marginBottom10" href="@Url.Action("GetDoctorById", "Doctors", new { id = doctor.Id })">толығырақ</a></td>
+                        <td><a href="@Url.Action("DeleteDoctor", "Administration", new { id = doctor.Id })" class="fa fa-times"></a></td>                        
                     </tr>
                 }
             </tbody>
